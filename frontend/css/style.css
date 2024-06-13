@@ -15,9 +15,16 @@ body {
   justify-content: center;
 }
 
+.btn-action, .btn-add {
+  border: none;
+  background-color: transparent;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 .todolist{
   background-color: #f3e6d6;
-  height: 80vh;
+  
   width: 90vw;
   max-width: 1440px;
   display: flex;
@@ -91,7 +98,7 @@ form{
   margin-bottom: 15px;
 }
 
-.content-task {
+.taskTitle {
   height: 100%;
   width: 100%;
   display: flex;
@@ -103,7 +110,7 @@ form{
   
 } 
 
-.content-task label{
+.taskTitle label{
   display: flex;
   flex-wrap: wrap;
   color: #0D1826 ;
@@ -113,7 +120,7 @@ form{
   
 }
 
-.content-task span {
+.taskTitle span {
   font-size: 0.8em;
   font-weight: 700;
   color: #A3B2BF;
@@ -121,7 +128,7 @@ form{
   
 }
 
-.content-task input[type="checkbox"] {
+.taskTitle input[type="checkbox"] {
   appearance: none;
   
   min-height: 30px;
@@ -132,7 +139,7 @@ form{
   margin: 0;
 }
 
-.content-task input[type="checkbox"]:checked::before {
+.taskTitle input[type="checkbox"]:checked::before {
   content:url(../img/check.png);
   background-color: #A3B2BF;
   padding: 0 4px;
@@ -140,15 +147,11 @@ form{
   border-radius: 2px;
 }
 
-
-
-
-
-.task .taskOK .content-task {
+.task .taskOK .taskTitle {
   background-color: #d8d7d5;
 }
 
-.task .taskOK .content-task input[type="checkbox"] {
+.task .taskOK .taskTitle input[type="checkbox"] {
 
   border: 1px solid #A3B2BF;
   background-color: #A3B2BF;

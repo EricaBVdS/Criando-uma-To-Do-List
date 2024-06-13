@@ -14,15 +14,16 @@
      <h1>Lista de Tarefas</h1>
     <div class="todolist" >
 
-      <form action="">
+      <form class="addForm">
         <input class="addtask" type="text" placeholder="Adicionar uma tarefa">
-        <span>
-          <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="24" cy="24" r="24" fill="#8C612B"/>
-            <line x1="23.8" y1="12" x2="23.8" y2="36" stroke="#D8D9D7" stroke-width="2"/>
-            <path d="M12 24H36" stroke="#D8D9D7" stroke-width="2"/>
-          </svg>
-        </span>
+        <button  class="btn-add" type="submit">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="24" cy="24" r="24" fill="#8C612B"/>
+              <line x1="23.8" y1="12" x2="23.8" y2="36" stroke="#D8D9D7" stroke-width="2"/>
+              <path d="M12 24H36" stroke="#D8D9D7" stroke-width="2"/>
+            </svg>
+          
+        </button>
         
       </form>
 
@@ -32,25 +33,18 @@
 
         <p>Pendentes</p>
         <div class="task">
+          <!-- <div class="newtask">
 
-          <div class="newtask"> 
-            <div class="content-task">
+            <div class="taskTitle">
               <input type="checkbox" id="task1" name="task1" value="">
-              <label for="task1"> Lorem ipsum, dolor sit amet consectetur adipisicing elit.  </label>
+              <label for="task1"> Lorem ipsum, dolor s it amet consectetur adipisicing elit .  </label>
               <span>4 de junho de 2024 21:45</span> 
             </div>
-            <img src="./img/editar.svg" alt=""> <img src="./img/excluir.svg" alt="">
-          </div>
 
-          <div class="newtask"> 
-            <div class="content-task">
-              <input type="checkbox" id="task1" name="task1" value="">
-              <label for="task1"> Lorem ipsum, dolor sit amet consectetur adipisicing elit.  </label> 
-              <span>4 de junho de 2024 21:45</span>
-            </div>
-            <img src="./img/editar.svg" alt=""> <img src="./img/excluir.svg" alt="">
-          </div>
-
+            <button class="btn-action"><img src="./img/editar.svg" alt=""></button> 
+            <button class="btn-action"><img src="./img/excluir.svg" alt=""></button>
+             
+          </div> -->
         </div>
 
         <p>Concluídas</p>
@@ -58,13 +52,15 @@
 
           <div class="newtask taskOK"> 
 
-            <div class="content-task">
+            <div class="taskTitle">
               <input type="checkbox" id="task1" name="task1" value="">
               <label for="task1"> <del>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</del> </label>
               <span> <del>4 de junho de 2024 21:45</del></span> 
             </div>
 
-            <img src="./img/editar.svg" alt=""> <img src="./img/excluir.svg" alt="">
+            <button class="btn-action"><img src="./img/editar.svg" alt=""></button> 
+            <button class="btn-action"><img src="./img/excluir.svg" alt=""></button>
+            
           </div>
           
         </div>
