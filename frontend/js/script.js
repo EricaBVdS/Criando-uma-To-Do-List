@@ -1,16 +1,16 @@
 const divTasks = document.querySelector('.task')
+const divTasksOK = document.querySelector('.statusConcluida')
 const addForm = document.querySelector('.addForm')
 const inputTask = document.querySelector('.addtask')
 
-//busca tarefas no banco
 const fetchTasks = async () => {
 
   const response =  await fetch('http://localhost:3333/tasks');
-
+ 
   //pega o json da response
   const tasks = await response.json()
   return tasks
-
+  
 }
 
 //adciona tarefa
@@ -24,7 +24,6 @@ const addTask = async (event) => {
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify(task),
   });
-
   loadTasks()
   inputTask.value = '';
 
@@ -33,6 +32,19 @@ const addTask = async (event) => {
 //exclui tarefa
 const deleteTask = async (id) => {
   await fetch(`http://localhost:3333/tasks/${id}`,{method: 'delete'});
+
+  loadTasks()
+}
+
+
+//atualiza status
+const updateTask = async ({title, id, status}) => {
+
+  await fetch(`http://localhost:3333/tasks/${id}`, {
+    method:'put',
+    headers: { 'Content-Type': 'application/json'},
+    body: JSON.stringify({title, status}),
+  })
 
   loadTasks()
 }
@@ -60,6 +72,7 @@ const createElement = (tag, innerText = '', innerHTML = '') => {
   return element;
 }
 
+
 // cria tarefa 
 const createTask = (task) => {
 
@@ -71,10 +84,24 @@ const createTask = (task) => {
   
   const taskTitle = createElement('div')
   taskTitle.classList.add('taskTitle')
+
   const checkbox = createElement('input')
   checkbox.setAttribute('type', 'checkbox')
   checkbox.setAttribute('name', 'task1')
   checkbox.setAttribute('id', 'task1')
+  checkbox.setAttribute('value', status)
+
+  checkbox.addEventListener('change', ({ target }) =>{
+    if(checkbox.checked && checkbox.value == 'pendente'){
+      newTask.classList.add('taskOK')
+      checkbox.setAttribute('value', 'concluído')
+    } else {
+      newTask.classList.remove('taskOK')
+      checkbox.setAttribute('value', 'pendente')
+    }
+    updateTask({id, title, created_at, status:target.value})
+  })
+
   
   const label = createElement('label', title)
   label.setAttribute('for', 'task1')
@@ -87,6 +114,7 @@ const createTask = (task) => {
   btnExcluir.classList.add('btn-action')
   btnExcluir.addEventListener('click',() => deleteTask(id))
  
+  //
   newTask.appendChild(taskTitle)
   taskTitle.appendChild(checkbox)
   taskTitle.appendChild(label)
@@ -102,13 +130,24 @@ const createTask = (task) => {
 
 const loadTasks = async() => {
   const tasks = await fetchTasks()
-
   divTasks.innerHTML = ''
 
   tasks.forEach((task) => {
+    
+    const {title, id, created_at, status} = task 
     const newTask = createTask(task)
-    divTasks.appendChild(newTask)
+    if (status == 'concluído') {
+      newTask.classList.add('taskOK')
+    } 
+    return divTasks.appendChild(newTask)
+    
   });
+  /*
+  tasks.forEach((task) => {
+    const newTask = createTask(task) 
+    divTasks.appendChild(newTask)
+
+  });*/
 }
 
 addForm.addEventListener('submit', addTask)

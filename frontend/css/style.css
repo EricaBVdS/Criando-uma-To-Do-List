@@ -6,7 +6,7 @@ body {
 
 
 .container {
-  height: 100vh;
+  height: auto;
   width: auto;
   background-color: #ececec;
   display: flex;
@@ -24,7 +24,6 @@ body {
 
 .todolist{
   background-color: #f3e6d6;
-  
   width: 90vw;
   max-width: 1440px;
   display: flex;
@@ -35,6 +34,7 @@ body {
 }
 
 h1{
+  padding-top: 20px;
   color: #8C612B ;
   font-weight: 700;
   font-size: 2.5em;
@@ -130,7 +130,6 @@ form{
 
 .taskTitle input[type="checkbox"] {
   appearance: none;
-  
   min-height: 30px;
   min-width: 30px;
   border: 1px solid #A3B2BF;
@@ -139,20 +138,13 @@ form{
   margin: 0;
 }
 
-.taskTitle input[type="checkbox"]:checked::before {
-  content:url(../img/check.png);
-  background-color: #A3B2BF;
-  padding: 0 4px;
-  font-size: 1.9em;
-  border-radius: 2px;
-}
+
 
 .task .taskOK .taskTitle {
   background-color: #d8d7d5;
 }
 
 .task .taskOK .taskTitle input[type="checkbox"] {
-
   border: 1px solid #A3B2BF;
   background-color: #A3B2BF;
   background-image: url(../img/check.png);
