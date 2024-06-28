@@ -3,6 +3,8 @@ const divTasksOK = document.querySelector('.statusConcluida')
 const addForm = document.querySelector('.addForm')
 const inputTask = document.querySelector('.addtask')
 
+const inputSearch = document.querySelector('.search')
+
 const fetchTasks = async () => {
 
   const response =  await fetch('http://localhost:3333/tasks');
@@ -91,6 +93,7 @@ const createTask = (task) => {
   checkbox.setAttribute('id', 'task1')
   checkbox.setAttribute('value', status)
 
+  //quando marcar o checkbox o status muda para "concluido"
   checkbox.addEventListener('change', ({ target }) =>{
     if(checkbox.checked && checkbox.value == 'pendente'){
       newTask.classList.add('taskOK')
@@ -102,17 +105,37 @@ const createTask = (task) => {
     updateTask({id, title, created_at, status:target.value})
   })
 
-  
   const label = createElement('label', title)
   label.setAttribute('for', 'task1')
   const data = createElement('span', formatDate(created_at))
 
+  
+
   //botões
   const btnEditar = createElement('button', '', '<img src="./img/editar.svg" alt="">')
   const btnExcluir = createElement('button', '', '<img src="./img/excluir.svg" alt="">')
+
   btnEditar.classList.add('btn-action')
+
   btnExcluir.classList.add('btn-action')
   btnExcluir.addEventListener('click',() => deleteTask(id))
+
+  //
+  const editForm = createElement('form')
+  const editInput = createElement('input')
+
+  editInput.value = title
+  editForm.appendChild(editInput)
+
+  editForm.addEventListener('submit', (event) => {
+    event.preventDefault()
+    updateTask({id, title: editInput.value, status})
+  })
+
+  btnEditar.addEventListener('click', () =>{
+    label.innerText = ''
+    label.appendChild(editForm)       
+  })
  
   //
   newTask.appendChild(taskTitle)
@@ -132,8 +155,7 @@ const loadTasks = async() => {
   const tasks = await fetchTasks()
   divTasks.innerHTML = ''
 
-  tasks.forEach((task) => {
-    
+  tasks.forEach((task) => { 
     const {title, id, created_at, status} = task 
     const newTask = createTask(task)
     if (status == 'concluído') {
