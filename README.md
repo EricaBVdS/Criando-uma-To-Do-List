@@ -9,4 +9,4 @@ Fiz um layout simples no figma de como eu queria que ficasse.
 
 Você pode visualizar aqui [Figma](https://www.figma.com/design/MfVfJB2J4GCPAtvxwV4hRF/TODOLIST?node-id=0-1&t=TafGowSIRqpu7gPV-1).
 
-**Ainda não foi concluído...**
+
